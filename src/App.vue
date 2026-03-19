@@ -56,22 +56,5 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
-html {
-  overflow-y: auto;
-}
 
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-}
-
-thead tr th {
-  font-size: 15px;
-  font-weight: bold;
-}
 </style>

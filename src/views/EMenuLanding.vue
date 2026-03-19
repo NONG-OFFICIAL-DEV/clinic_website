@@ -111,455 +111,462 @@
       </div>
     </v-app-bar>
 
-    <v-main class="pt-0">
-      <!-- ── HERO ──────────────────────────────────────────────────────── -->
-      <section class="hero-section">
-        <div class="hero-orb hero-orb-1" />
-        <div class="hero-orb hero-orb-2" />
-        <div class="hero-orb hero-orb-3" />
+    <v-main>
+      <v-container fluid class="pa-0">
+        <!-- ── HERO ──────────────────────────────────────────────────────── -->
+        <section class="hero-section">
+          <div class="hero-orb hero-orb-1" />
+          <div class="hero-orb hero-orb-2" />
+          <div class="hero-orb hero-orb-3" />
 
-        <v-container>
-          <v-row align="center" justify="center">
-            <!-- Left text -->
-            <v-col cols="12" md="6" class="hero-text-col" data-aos="fade-right">
-              <div class="hero-badge mb-6">
-                <span class="badge-dot" />
-                {{ t('emenu.hero.badge') }}
-              </div>
-
-              <h1 class="hero-title mb-5">
-                {{ t('emenu.hero.title1') }}
-                <br />
-                <span class="gold-text">{{ t('emenu.hero.title2') }}</span>
-              </h1>
-
-              <p class="hero-sub mb-8">{{ t('emenu.hero.sub') }}</p>
-
-              <div class="d-flex gap-3 flex-wrap">
-                <v-btn
-                  color="amber-darken-2"
-                  size="x-large"
-                  rounded="xl"
-                  variant="flat"
-                  class="hero-btn px-10"
-                  append-icon="mdi-arrow-right"
-                  href="#contact"
-                >
-                  {{ t('emenu.hero.cta') }}
-                </v-btn>
-                <v-btn
-                  size="x-large"
-                  rounded="xl"
-                  variant="outlined"
-                  class="px-8"
-                  href="#demo"
-                >
-                  {{ t('emenu.hero.demo') }}
-                </v-btn>
-              </div>
-
-              <!-- Stats -->
-              <div class="hero-stats mt-10">
-                <div v-for="s in heroStats" :key="s.num" class="hero-stat">
-                  <div class="hstat-num">{{ s.num }}</div>
-                  <div class="hstat-label">{{ t(s.key) }}</div>
-                </div>
-              </div>
-            </v-col>
-
-            <!-- Right: phone mockup -->
-            <v-col
-              cols="12"
-              md="6"
-              class="d-flex justify-center align-center"
-              data-aos="fade-left"
-              data-aos-delay="150"
-            >
-              <div class="phone-wrap">
-                <div class="phone-frame">
-                  <!-- Phone screen -->
-                  <div class="phone-screen">
-                    <!-- Header -->
-                    <div class="ps-header">
-                      <div class="ps-restaurant">
-                        <span class="ps-logo">🍜</span>
-                        <div>
-                          <div class="ps-name">ភោជនីយដ្ឋាន នគរ</div>
-                          <div class="ps-table">Table 5</div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Category pills -->
-                    <div class="ps-cats">
-                      <div
-                        v-for="c in phoneCats"
-                        :key="c"
-                        class="ps-cat"
-                        :class="{ active: c === '🍜 Noodles' }"
-                      >
-                        {{ c }}
-                      </div>
-                    </div>
-                    <!-- Items -->
-                    <div class="ps-items">
-                      <div
-                        v-for="item in phoneItems"
-                        :key="item.name"
-                        class="ps-item"
-                      >
-                        <div
-                          class="ps-item-img"
-                          :style="`background:${item.bg}`"
-                        >
-                          {{ item.emoji }}
-                        </div>
-                        <div class="ps-item-info">
-                          <div class="ps-item-name">{{ item.name }}</div>
-                          <div class="ps-item-price">${{ item.price }}</div>
-                        </div>
-                        <div class="ps-add">+</div>
-                      </div>
-                    </div>
-                    <!-- Cart bar -->
-                    <div class="ps-cart">
-                      <div class="ps-cart-count">3 items</div>
-                      <div class="ps-cart-total">View Order · $12.50</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Floating elements around phone -->
-                <div
-                  class="float-el float-qr"
-                  data-aos="zoom-in"
-                  data-aos-delay="400"
-                >
-                  <div class="qr-grid">
-                    <div
-                      v-for="n in 16"
-                      :key="n"
-                      class="qr-cell"
-                      :class="{ dark: qrPattern.includes(n) }"
-                    />
-                  </div>
-                  <div class="qr-label">Scan to order</div>
-                </div>
-
-                <div
-                  class="float-el float-order"
-                  data-aos="zoom-in"
-                  data-aos-delay="550"
-                >
-                  <v-icon
-                    icon="mdi-check-circle"
-                    color="success"
-                    size="16"
-                    class="mr-1"
-                  />
-                  <span>Order sent to kitchen!</span>
-                </div>
-
-                <div
-                  class="float-el float-lang"
-                  data-aos="zoom-in"
-                  data-aos-delay="650"
-                >
-                  🇰🇭 ខ្មែរ / 🇬🇧 EN
-                </div>
-              </div>
-            </v-col>
-          </v-row>
-        </v-container>
-      </section>
-
-      <!-- ── HOW IT WORKS ────────────────────────────────────────────────── -->
-      <section class="section-pad bg-soft" id="demo">
-        <v-container>
-          <div class="text-center mb-14" data-aos="fade-up">
-            <div class="section-tag">{{ t('emenu.how.tag') }}</div>
-            <h2 class="section-title">{{ t('emenu.how.title') }}</h2>
-            <p class="section-sub mx-auto">{{ t('emenu.how.sub') }}</p>
-          </div>
-
-          <v-row justify="center">
-            <v-col
-              v-for="(step, i) in howSteps"
-              :key="step.key"
-              cols="12"
-              sm="4"
-              data-aos="fade-up"
-              :data-aos-delay="i * 120"
-            >
-              <div class="how-card">
-                <div class="how-num">0{{ i + 1 }}</div>
-                <div class="how-icon-wrap">{{ step.emoji }}</div>
-                <h3 class="how-title">{{ t(step.key + '.title') }}</h3>
-                <p class="how-desc">{{ t(step.key + '.desc') }}</p>
-                <!-- Arrow between steps -->
-                <div v-if="i < 2" class="how-arrow">→</div>
-              </div>
-            </v-col>
-          </v-row>
-        </v-container>
-      </section>
-
-      <!-- ── FEATURES ───────────────────────────────────────────────────── -->
-      <section class="section-pad" id="features">
-        <v-container>
-          <div class="text-center mb-14" data-aos="fade-up">
-            <div class="section-tag">{{ t('emenu.features.tag') }}</div>
-            <h2 class="section-title">{{ t('emenu.features.title') }}</h2>
-          </div>
-
-          <!-- Big feature 1: Menu display -->
-          <v-row align="center" class="mb-16">
-            <v-col cols="12" md="6" data-aos="fade-right">
-              <div class="feat-visual feat-v1">
-                <div class="feat-mockup">
-                  <div class="fm-header">📱 Live Menu Preview</div>
-                  <div class="fm-grid">
-                    <div
-                      v-for="m in featMenuItems"
-                      :key="m.name"
-                      class="fm-card"
-                    >
-                      <div class="fm-img" :style="`background:${m.bg}`">
-                        {{ m.emoji }}
-                      </div>
-                      <div class="fm-name">{{ m.name }}</div>
-                      <div class="fm-price">{{ m.price }}</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="feat-float feat-float-1">
-                  <v-icon
-                    icon="mdi-image-multiple"
-                    size="13"
-                    class="mr-1"
-                    color="amber"
-                  />
-                  HD food photos
-                </div>
-              </div>
-            </v-col>
-            <v-col cols="12" md="6" class="pl-md-14" data-aos="fade-left">
-              <div class="section-tag">{{ t('emenu.f1.tag') }}</div>
-              <h3 class="feat-title">{{ t('emenu.f1.title') }}</h3>
-              <p class="feat-desc">{{ t('emenu.f1.desc') }}</p>
-              <div class="feat-checks mt-6">
-                <div
-                  v-for="k in ['emenu.f1.c1', 'emenu.f1.c2', 'emenu.f1.c3']"
-                  :key="k"
-                  class="feat-check"
-                >
-                  <div class="check-dot" />
-                  {{ t(k) }}
-                </div>
-              </div>
-            </v-col>
-          </v-row>
-
-          <!-- Big feature 2: Order directly -->
-          <v-row align="center" class="mb-16 flex-md-row-reverse">
-            <v-col cols="12" md="6" data-aos="fade-left">
-              <div class="feat-visual feat-v2">
-                <div class="order-flow">
-                  <div
-                    v-for="(step, i) in orderFlow"
-                    :key="step.label"
-                    class="of-step"
-                  >
-                    <div class="of-icon">{{ step.icon }}</div>
-                    <div class="of-label">{{ step.label }}</div>
-                    <div v-if="i < orderFlow.length - 1" class="of-arrow">
-                      ↓
-                    </div>
-                  </div>
-                </div>
-                <div class="feat-float feat-float-2">
-                  <v-icon
-                    icon="mdi-lightning-bolt"
-                    size="13"
-                    class="mr-1"
-                    color="success"
-                  />
-                  Instant to kitchen
-                </div>
-              </div>
-            </v-col>
-            <v-col cols="12" md="6" class="pr-md-14" data-aos="fade-right">
-              <div class="section-tag">{{ t('emenu.f2.tag') }}</div>
-              <h3 class="feat-title">{{ t('emenu.f2.title') }}</h3>
-              <p class="feat-desc">{{ t('emenu.f2.desc') }}</p>
-              <div class="feat-checks mt-6">
-                <div
-                  v-for="k in ['emenu.f2.c1', 'emenu.f2.c2', 'emenu.f2.c3']"
-                  :key="k"
-                  class="feat-check"
-                >
-                  <div class="check-dot" />
-                  {{ t(k) }}
-                </div>
-              </div>
-            </v-col>
-          </v-row>
-
-          <!-- Big feature 3: Bilingual -->
-          <v-row align="center">
-            <v-col cols="12" md="6" data-aos="fade-right">
-              <div class="feat-visual feat-v3">
-                <div class="lang-demo">
-                  <div class="lang-toggle-demo">
-                    <button class="ltd-btn active">🇰🇭 ខ្មែរ</button>
-                    <button class="ltd-btn">🇬🇧 English</button>
-                  </div>
-                  <div class="lang-content">
-                    <div class="lc-item">
-                      <span class="lc-kh">ស្បៃជ្រូក</span>
-                      <span class="lc-en">→ Grilled Pork</span>
-                    </div>
-                    <div class="lc-item">
-                      <span class="lc-kh">បាយឆា</span>
-                      <span class="lc-en">→ Fried Rice</span>
-                    </div>
-                    <div class="lc-item">
-                      <span class="lc-kh">ក្រូចឆ្មារ</span>
-                      <span class="lc-en">→ Fresh Lime Juice</span>
-                    </div>
-                    <div class="lc-item">
-                      <span class="lc-kh">នំបញ្ចុក</span>
-                      <span class="lc-en">→ Khmer Noodles</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </v-col>
-            <v-col cols="12" md="6" class="pl-md-14" data-aos="fade-left">
-              <div class="section-tag">{{ t('emenu.f3.tag') }}</div>
-              <h3 class="feat-title">{{ t('emenu.f3.title') }}</h3>
-              <p class="feat-desc">{{ t('emenu.f3.desc') }}</p>
-              <div class="feat-checks mt-6">
-                <div
-                  v-for="k in ['emenu.f3.c1', 'emenu.f3.c2', 'emenu.f3.c3']"
-                  :key="k"
-                  class="feat-check"
-                >
-                  <div class="check-dot" />
-                  {{ t(k) }}
-                </div>
-              </div>
-            </v-col>
-          </v-row>
-        </v-container>
-      </section>
-
-      <!-- ── FEATURE CARDS GRID ─────────────────────────────────────────── -->
-      <section class="section-pad bg-soft">
-        <v-container>
-          <div class="text-center mb-12" data-aos="fade-up">
-            <div class="section-tag">{{ t('emenu.more.tag') }}</div>
-            <h2 class="section-title">{{ t('emenu.more.title') }}</h2>
-          </div>
-          <v-row dense>
-            <v-col
-              v-for="(f, i) in featureCards"
-              :key="f.titleKey"
-              cols="12"
-              sm="6"
-              md="4"
-              data-aos="fade-up"
-              :data-aos-delay="i * 60"
-            >
-              <v-card
-                rounded="xl"
-                border
-                variant="flat"
-                class="fcard pa-7 fill-height"
-                hover
+          <v-container>
+            <v-row align="center" justify="center">
+              <!-- Left text -->
+              <v-col
+                cols="12"
+                md="6"
+                class="hero-text-col"
+                data-aos="fade-right"
               >
-                <v-avatar
-                  :color="f.color"
-                  variant="tonal"
-                  rounded="xl"
-                  size="52"
-                  class="mb-5"
-                >
-                  <v-icon :icon="f.icon" size="24" />
-                </v-avatar>
-                <div class="text-body-1 font-weight-bold mb-2">
-                  {{ t(f.titleKey) }}
+                <div class="hero-badge mb-6">
+                  <span class="badge-dot" />
+                  {{ t('emenu.hero.badge') }}
                 </div>
-                <div
-                  class="text-body-2 text-medium-emphasis"
-                  style="line-height: 1.7"
-                >
-                  {{ t(f.descKey) }}
-                </div>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-      </section>
 
-      <!-- ── CTA ───────────────────────────────────────────────────────── -->
-      <section class="section-pad" id="contact">
-        <v-container>
-          <div class="cta-block" data-aos="zoom-in">
-            <div class="cta-orb cta-orb-1" />
-            <div class="cta-orb cta-orb-2" />
-            <div class="cta-inner text-center">
-              <div class="cta-emoji mb-4">📱</div>
-              <h2 class="cta-title text-white mb-3">
-                {{ t('emenu.cta.title') }}
-              </h2>
-              <p class="cta-sub mb-8">{{ t('emenu.cta.sub') }}</p>
-              <div class="d-flex gap-3 justify-center flex-wrap">
-                <v-btn
-                  color="amber-darken-1"
+                <h1 class="hero-title mb-5">
+                  {{ t('emenu.hero.title1') }}
+                  <br />
+                  <span class="gold-text">{{ t('emenu.hero.title2') }}</span>
+                </h1>
+
+                <p class="hero-sub mb-8">{{ t('emenu.hero.sub') }}</p>
+
+                <div class="d-flex gap-3 flex-wrap">
+                  <v-btn
+                    color="amber-darken-2"
+                    size="x-large"
+                    rounded="xl"
+                    variant="flat"
+                    class="hero-btn px-10"
+                    append-icon="mdi-arrow-right"
+                    href="#contact"
+                  >
+                    {{ t('emenu.hero.cta') }}
+                  </v-btn>
+                  <v-btn
+                    size="x-large"
+                    rounded="xl"
+                    variant="outlined"
+                    class="px-8"
+                    href="#demo"
+                  >
+                    {{ t('emenu.hero.demo') }}
+                  </v-btn>
+                </div>
+
+                <!-- Stats -->
+                <div class="hero-stats mt-10">
+                  <div v-for="s in heroStats" :key="s.num" class="hero-stat">
+                    <div class="hstat-num">{{ s.num }}</div>
+                    <div class="hstat-label">{{ t(s.key) }}</div>
+                  </div>
+                </div>
+              </v-col>
+
+              <!-- Right: phone mockup -->
+              <v-col
+                cols="12"
+                md="6"
+                class="d-flex justify-center align-center"
+                data-aos="fade-left"
+                data-aos-delay="150"
+              >
+                <div class="phone-wrap">
+                  <div class="phone-frame">
+                    <!-- Phone screen -->
+                    <div class="phone-screen">
+                      <!-- Header -->
+                      <div class="ps-header">
+                        <div class="ps-restaurant">
+                          <span class="ps-logo">🍜</span>
+                          <div>
+                            <div class="ps-name">ភោជនីយដ្ឋាន នគរ</div>
+                            <div class="ps-table">Table 5</div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Category pills -->
+                      <div class="ps-cats">
+                        <div
+                          v-for="c in phoneCats"
+                          :key="c"
+                          class="ps-cat"
+                          :class="{ active: c === '🍜 Noodles' }"
+                        >
+                          {{ c }}
+                        </div>
+                      </div>
+                      <!-- Items -->
+                      <div class="ps-items">
+                        <div
+                          v-for="item in phoneItems"
+                          :key="item.name"
+                          class="ps-item"
+                        >
+                          <div
+                            class="ps-item-img"
+                            :style="`background:${item.bg}`"
+                          >
+                            {{ item.emoji }}
+                          </div>
+                          <div class="ps-item-info">
+                            <div class="ps-item-name">{{ item.name }}</div>
+                            <div class="ps-item-price">${{ item.price }}</div>
+                          </div>
+                          <div class="ps-add">+</div>
+                        </div>
+                      </div>
+                      <!-- Cart bar -->
+                      <div class="ps-cart">
+                        <div class="ps-cart-count">3 items</div>
+                        <div class="ps-cart-total">View Order · $12.50</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Floating elements around phone -->
+                  <div
+                    class="float-el float-qr"
+                    data-aos="zoom-in"
+                    data-aos-delay="400"
+                  >
+                    <div class="qr-grid">
+                      <div
+                        v-for="n in 16"
+                        :key="n"
+                        class="qr-cell"
+                        :class="{ dark: qrPattern.includes(n) }"
+                      />
+                    </div>
+                    <div class="qr-label">Scan to order</div>
+                  </div>
+
+                  <div
+                    class="float-el float-order"
+                    data-aos="zoom-in"
+                    data-aos-delay="550"
+                  >
+                    <v-icon
+                      icon="mdi-check-circle"
+                      color="success"
+                      size="16"
+                      class="mr-1"
+                    />
+                    <span>Order sent to kitchen!</span>
+                  </div>
+
+                  <div
+                    class="float-el float-lang"
+                    data-aos="zoom-in"
+                    data-aos-delay="650"
+                  >
+                    🇰🇭 ខ្មែរ / 🇬🇧 EN
+                  </div>
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
+        </section>
+
+        <!-- ── HOW IT WORKS ────────────────────────────────────────────────── -->
+        <section class="section-pad bg-soft" id="demo">
+          <v-container>
+            <div class="text-center mb-14" data-aos="fade-up">
+              <div class="section-tag">{{ t('emenu.how.tag') }}</div>
+              <h2 class="section-title">{{ t('emenu.how.title') }}</h2>
+              <p class="section-sub mx-auto">{{ t('emenu.how.sub') }}</p>
+            </div>
+
+            <v-row justify="center">
+              <v-col
+                v-for="(step, i) in howSteps"
+                :key="step.key"
+                cols="12"
+                sm="4"
+                data-aos="fade-up"
+                :data-aos-delay="i * 120"
+              >
+                <div class="how-card">
+                  <div class="how-num">0{{ i + 1 }}</div>
+                  <div class="how-icon-wrap">{{ step.emoji }}</div>
+                  <h3 class="how-title">{{ t(step.key + '.title') }}</h3>
+                  <p class="how-desc">{{ t(step.key + '.desc') }}</p>
+                  <!-- Arrow between steps -->
+                  <div v-if="i < 2" class="how-arrow">→</div>
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
+        </section>
+
+        <!-- ── FEATURES ───────────────────────────────────────────────────── -->
+        <section class="section-pad" id="features">
+          <v-container>
+            <div class="text-center mb-14" data-aos="fade-up">
+              <div class="section-tag">{{ t('emenu.features.tag') }}</div>
+              <h2 class="section-title">{{ t('emenu.features.title') }}</h2>
+            </div>
+
+            <!-- Big feature 1: Menu display -->
+            <v-row align="center" class="mb-16">
+              <v-col cols="12" md="6" data-aos="fade-right">
+                <div class="feat-visual feat-v1">
+                  <div class="feat-mockup">
+                    <div class="fm-header">📱 Live Menu Preview</div>
+                    <div class="fm-grid">
+                      <div
+                        v-for="m in featMenuItems"
+                        :key="m.name"
+                        class="fm-card"
+                      >
+                        <div class="fm-img" :style="`background:${m.bg}`">
+                          {{ m.emoji }}
+                        </div>
+                        <div class="fm-name">{{ m.name }}</div>
+                        <div class="fm-price">{{ m.price }}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="feat-float feat-float-1">
+                    <v-icon
+                      icon="mdi-image-multiple"
+                      size="13"
+                      class="mr-1"
+                      color="amber"
+                    />
+                    HD food photos
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="6" class="pl-md-14" data-aos="fade-left">
+                <div class="section-tag">{{ t('emenu.f1.tag') }}</div>
+                <h3 class="feat-title">{{ t('emenu.f1.title') }}</h3>
+                <p class="feat-desc">{{ t('emenu.f1.desc') }}</p>
+                <div class="feat-checks mt-6">
+                  <div
+                    v-for="k in ['emenu.f1.c1', 'emenu.f1.c2', 'emenu.f1.c3']"
+                    :key="k"
+                    class="feat-check"
+                  >
+                    <div class="check-dot" />
+                    {{ t(k) }}
+                  </div>
+                </div>
+              </v-col>
+            </v-row>
+
+            <!-- Big feature 2: Order directly -->
+            <v-row align="center" class="mb-16 flex-md-row-reverse">
+              <v-col cols="12" md="6" data-aos="fade-left">
+                <div class="feat-visual feat-v2">
+                  <div class="order-flow">
+                    <div
+                      v-for="(step, i) in orderFlow"
+                      :key="step.label"
+                      class="of-step"
+                    >
+                      <div class="of-icon">{{ step.icon }}</div>
+                      <div class="of-label">{{ step.label }}</div>
+                      <div v-if="i < orderFlow.length - 1" class="of-arrow">
+                        ↓
+                      </div>
+                    </div>
+                  </div>
+                  <div class="feat-float feat-float-2">
+                    <v-icon
+                      icon="mdi-lightning-bolt"
+                      size="13"
+                      class="mr-1"
+                      color="success"
+                    />
+                    Instant to kitchen
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="6" class="pr-md-14" data-aos="fade-right">
+                <div class="section-tag">{{ t('emenu.f2.tag') }}</div>
+                <h3 class="feat-title">{{ t('emenu.f2.title') }}</h3>
+                <p class="feat-desc">{{ t('emenu.f2.desc') }}</p>
+                <div class="feat-checks mt-6">
+                  <div
+                    v-for="k in ['emenu.f2.c1', 'emenu.f2.c2', 'emenu.f2.c3']"
+                    :key="k"
+                    class="feat-check"
+                  >
+                    <div class="check-dot" />
+                    {{ t(k) }}
+                  </div>
+                </div>
+              </v-col>
+            </v-row>
+
+            <!-- Big feature 3: Bilingual -->
+            <v-row align="center">
+              <v-col cols="12" md="6" data-aos="fade-right">
+                <div class="feat-visual feat-v3">
+                  <div class="lang-demo">
+                    <div class="lang-toggle-demo">
+                      <button class="ltd-btn active">🇰🇭 ខ្មែរ</button>
+                      <button class="ltd-btn">🇬🇧 English</button>
+                    </div>
+                    <div class="lang-content">
+                      <div class="lc-item">
+                        <span class="lc-kh">ស្បៃជ្រូក</span>
+                        <span class="lc-en">→ Grilled Pork</span>
+                      </div>
+                      <div class="lc-item">
+                        <span class="lc-kh">បាយឆា</span>
+                        <span class="lc-en">→ Fried Rice</span>
+                      </div>
+                      <div class="lc-item">
+                        <span class="lc-kh">ក្រូចឆ្មារ</span>
+                        <span class="lc-en">→ Fresh Lime Juice</span>
+                      </div>
+                      <div class="lc-item">
+                        <span class="lc-kh">នំបញ្ចុក</span>
+                        <span class="lc-en">→ Khmer Noodles</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="6" class="pl-md-14" data-aos="fade-left">
+                <div class="section-tag">{{ t('emenu.f3.tag') }}</div>
+                <h3 class="feat-title">{{ t('emenu.f3.title') }}</h3>
+                <p class="feat-desc">{{ t('emenu.f3.desc') }}</p>
+                <div class="feat-checks mt-6">
+                  <div
+                    v-for="k in ['emenu.f3.c1', 'emenu.f3.c2', 'emenu.f3.c3']"
+                    :key="k"
+                    class="feat-check"
+                  >
+                    <div class="check-dot" />
+                    {{ t(k) }}
+                  </div>
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
+        </section>
+
+        <!-- ── FEATURE CARDS GRID ─────────────────────────────────────────── -->
+        <section class="section-pad bg-soft">
+          <v-container>
+            <div class="text-center mb-12" data-aos="fade-up">
+              <div class="section-tag">{{ t('emenu.more.tag') }}</div>
+              <h2 class="section-title">{{ t('emenu.more.title') }}</h2>
+            </div>
+            <v-row dense>
+              <v-col
+                v-for="(f, i) in featureCards"
+                :key="f.titleKey"
+                cols="12"
+                sm="6"
+                md="4"
+                data-aos="fade-up"
+                :data-aos-delay="i * 60"
+              >
+                <v-card
+                  rounded="xl"
+                  border
                   variant="flat"
-                  size="x-large"
-                  rounded="xl"
-                  class="px-10 font-weight-bold cta-btn"
-                  href="mailto:hello@smartstore.kh"
+                  class="fcard pa-7 fill-height"
+                  hover
                 >
-                  {{ t('emenu.cta.btn') }}
-                </v-btn>
-                <v-btn
-                  variant="outlined"
-                  color="white"
-                  size="x-large"
-                  rounded="xl"
-                  class="px-10"
-                  href="/"
-                >
-                  {{ t('emenu.cta.back') }}
-                </v-btn>
+                  <v-avatar
+                    :color="f.color"
+                    variant="tonal"
+                    rounded="xl"
+                    size="52"
+                    class="mb-5"
+                  >
+                    <v-icon :icon="f.icon" size="24" />
+                  </v-avatar>
+                  <div class="text-body-1 font-weight-bold mb-2">
+                    {{ t(f.titleKey) }}
+                  </div>
+                  <div
+                    class="text-body-2 text-medium-emphasis"
+                    style="line-height: 1.7"
+                  >
+                    {{ t(f.descKey) }}
+                  </div>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+        </section>
+
+        <!-- ── CTA ───────────────────────────────────────────────────────── -->
+        <section class="section-pad" id="contact">
+          <v-container>
+            <div class="cta-block" data-aos="zoom-in">
+              <div class="cta-orb cta-orb-1" />
+              <div class="cta-orb cta-orb-2" />
+              <div class="cta-inner text-center">
+                <div class="cta-emoji mb-4">📱</div>
+                <h2 class="cta-title text-white mb-3">
+                  {{ t('emenu.cta.title') }}
+                </h2>
+                <p class="cta-sub mb-8">{{ t('emenu.cta.sub') }}</p>
+                <div class="d-flex gap-3 justify-center flex-wrap">
+                  <v-btn
+                    color="amber-darken-1"
+                    variant="flat"
+                    size="x-large"
+                    rounded="xl"
+                    class="px-10 font-weight-bold cta-btn"
+                    href="mailto:hello@smartstore.kh"
+                  >
+                    {{ t('emenu.cta.btn') }}
+                  </v-btn>
+                  <v-btn
+                    variant="outlined"
+                    color="white"
+                    size="x-large"
+                    rounded="xl"
+                    class="px-10"
+                    href="/"
+                  >
+                    {{ t('emenu.cta.back') }}
+                  </v-btn>
+                </div>
               </div>
             </div>
-          </div>
-        </v-container>
-      </section>
+          </v-container>
+        </section>
 
-      <!-- ── FOOTER ────────────────────────────────────────────────────── -->
-      <v-footer border="t" class="py-6">
-        <v-container>
-          <div
-            class="d-flex align-center justify-space-between flex-wrap gap-4"
-          >
-            <div class="logo-wrap">
-              <span class="logo-icon">🍽️</span>
-              <span class="logo-text">
-                e
-                <span class="accent">Menu</span>
-              </span>
-              <span class="footer-by">by SmartStore</span>
+        <!-- ── FOOTER ────────────────────────────────────────────────────── -->
+        <v-footer border="t" class="py-6">
+          <v-container>
+            <div
+              class="d-flex align-center justify-space-between flex-wrap gap-4"
+            >
+              <div class="logo-wrap">
+                <span class="logo-icon">🍽️</span>
+                <span class="logo-text">
+                  e
+                  <span class="accent">Menu</span>
+                </span>
+                <span class="footer-by">by SmartStore</span>
+              </div>
+              <div class="text-caption text-medium-emphasis">
+                © 2026 SmartStore · Built for Cambodia 🇰🇭
+              </div>
             </div>
-            <div class="text-caption text-medium-emphasis">
-              © 2026 SmartStore · Built for Cambodia 🇰🇭
-            </div>
-          </div>
-        </v-container>
-      </v-footer>
+          </v-container>
+        </v-footer>
+      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -676,13 +683,13 @@
 
   /* ── Nav ── */
   .glass-nav {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 1000 !important;
+    /* position: sticky !important; */
+    /* top: 0 !important; */
+    /* z-index: 1000 !important;
     background: rgba(var(--v-theme-surface), 0.88) !important;
     backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(var(--v-theme-on-surface), 0.06) !important;
-    transition: box-shadow 0.25s !important;
+    transition: box-shadow 0.25s !important; */
   }
   .logo-wrap {
     display: flex;
