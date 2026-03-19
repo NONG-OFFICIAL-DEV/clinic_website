@@ -2,7 +2,9 @@ html,
 body {
   scroll-behavior: smooth;
   font-family: 'Poppins', sans-serif;
-  height: 100vh;
+  /* height: 100vh; */
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .text-body-1,

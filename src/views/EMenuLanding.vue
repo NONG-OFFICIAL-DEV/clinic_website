@@ -587,7 +587,12 @@
   }
   onMounted(() => {
     window.addEventListener('scroll', onScroll)
-    AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true })
+    AOS.init({
+      duration: 700,
+      easing: 'ease-out-cubic',
+      once: true,
+      disable: 'mobile'
+    })
   })
   onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
@@ -681,16 +686,35 @@
     box-sizing: border-box;
   }
 
-  /* ── Nav ── */
-  .glass-nav {
-    /* position: sticky !important; */
-    /* top: 0 !important; */
-    /* z-index: 1000 !important;
-    background: rgba(var(--v-theme-surface), 0.88) !important;
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(var(--v-theme-on-surface), 0.06) !important;
-    transition: box-shadow 0.25s !important; */
+  /* --- CRITICAL FIX FOR HORIZONTAL SCROLL --- */
+
+  /* 1. Prevent horizontal scroll on the entire app root */
+  :deep(.v-application) {
+    overflow-x: hidden !important;
+    width: 100vw;
+    position: relative;
   }
+
+  /* 2. Clip overflow on the main content wrapper */
+  :deep(.v-main) {
+    overflow-x: hidden !important;
+    display: block; /* Ensures it behaves as a block container */
+  }
+
+  /* 3. Ensure sections don't leak width */
+  section {
+    width: 100%;
+    overflow: hidden; /* Localizes clipping to each section */
+  }
+
+  /* 4. Fix for AOS animations */
+  [data-aos] {
+    pointer-events: none; /* Prevents invisible animated boxes from blocking clicks */
+  }
+  [data-aos].aos-animate {
+    pointer-events: auto;
+  }
+
   .logo-wrap {
     display: flex;
     align-items: center;
