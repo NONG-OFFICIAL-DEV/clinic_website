@@ -43,7 +43,7 @@
       class="glass-nav px-md-8"
       :elevation="scrolled ? 3 : 0"
     >
-      <div class="logo-wrap">
+      <div class="logo-wrap ms-2">
         <span class="logo-icon">🍽️</span>
         <span class="logo-text">
           e
@@ -240,18 +240,10 @@
                     data-aos="zoom-in"
                     data-aos-delay="400"
                   >
-                    <div class="qr-grid">
-                      <!-- <div
-                        v-for="n in 16"
-                        :key="n"
-                        class="qr-cell"
-                        :class="{ dark: qrPattern.includes(n) }"
-                      /> -->
-                    </div>
                     <v-img
                       :width="50"
                       cover
-                      src="https://beta.nongofficial.store/menu/my-sr-store/table/cb80e736-ff44-4167-901b-9e13c1bb80b2"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-lm44rUGXCT0llp5AO5ga8RtutjXUMm9x-g&s"
                     ></v-img>
                     <div class="qr-label">Scan to order</div>
                   </div>
@@ -531,7 +523,9 @@
                     size="x-large"
                     rounded="xl"
                     class="px-10 font-weight-bold cta-btn"
-                    href="mailto:hello@smartstore.kh"
+                    href="https://t.me/Nong_Phloeut"
+                    target="_blank"
+                    rel="noopener"
                   >
                     {{ t('emenu.cta.btn') }}
                   </v-btn>
