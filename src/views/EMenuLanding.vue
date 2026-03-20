@@ -241,13 +241,18 @@
                     data-aos-delay="400"
                   >
                     <div class="qr-grid">
-                      <div
+                      <!-- <div
                         v-for="n in 16"
                         :key="n"
                         class="qr-cell"
                         :class="{ dark: qrPattern.includes(n) }"
-                      />
+                      /> -->
                     </div>
+                    <v-img
+                      :width="50"
+                      cover
+                      src="https://beta.nongofficial.store/menu/my-sr-store/table/cb80e736-ff44-4167-901b-9e13c1bb80b2"
+                    ></v-img>
                     <div class="qr-label">Scan to order</div>
                   </div>
 
@@ -684,35 +689,6 @@
   * {
     font-family: 'Plus Jakarta Sans', 'Noto Sans Khmer', sans-serif;
     box-sizing: border-box;
-  }
-
-  /* --- CRITICAL FIX FOR HORIZONTAL SCROLL --- */
-
-  /* 1. Prevent horizontal scroll on the entire app root */
-  :deep(.v-application) {
-    overflow-x: hidden !important;
-    width: 100vw;
-    position: relative;
-  }
-
-  /* 2. Clip overflow on the main content wrapper */
-  :deep(.v-main) {
-    overflow-x: hidden !important;
-    display: block; /* Ensures it behaves as a block container */
-  }
-
-  /* 3. Ensure sections don't leak width */
-  section {
-    width: 100%;
-    overflow: hidden; /* Localizes clipping to each section */
-  }
-
-  /* 4. Fix for AOS animations */
-  [data-aos] {
-    pointer-events: none; /* Prevents invisible animated boxes from blocking clicks */
-  }
-  [data-aos].aos-animate {
-    pointer-events: auto;
   }
 
   .logo-wrap {
