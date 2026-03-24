@@ -1,11 +1,5 @@
 <template>
-  <v-app-bar
-    :elevation="scrolled ? 4 : 0"
-    :color="scrolled ? 'white' : 'transparent'"
-    class="app-header"
-    height="72"
-    fixed
-  >
+  <v-app-bar :elevation="scrolled ? 4 : 0" class="app-header" height="72" fixed>
     <v-container class="d-flex align-center py-0" style="max-width: 1280px">
       <!-- Logo -->
       <div
@@ -54,7 +48,7 @@
       <v-app-bar-nav-icon
         class="d-flex d-md-none"
         @click="mobileMenu = !mobileMenu"
-        :color="scrolled ? 'primary' : 'white'"
+        color="primary"
       />
     </v-container>
   </v-app-bar>
@@ -81,9 +75,11 @@
         <v-list-item
           v-for="link in navLinks"
           :key="link.id"
+          :value="link.id"
           :prepend-icon="link.icon"
           :title="link.label"
           @click="handleMobileClick(link.id)"
+          color="primary"
           rounded="lg"
           class="mb-1 mobile-nav-item"
         />
@@ -119,7 +115,8 @@
   function scrollTo(id) {
     const el = document.getElementById(id)
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
+      const y = el.offsetTop - 80 // offset for header
+      window.scrollTo({ top: y, behavior: 'smooth' })
     }
   }
 
@@ -131,10 +128,14 @@
 
   // 🎯 Dynamic color (FIXED)
   function getNavColor(id) {
-    if (activeSection.value === id) return 'secondary'
-    return scrolled.value ? 'default' : 'white'
-  }
+    if (activeSection.value === id) return 'primary'
 
+    if (!scrolled.value) {
+      return 'dark' // instead of white
+    }
+
+    return 'default'
+  }
   // Scroll listener (IMPROVED)
   function onScroll() {
     scrolled.value = window.scrollY > 50
@@ -154,6 +155,7 @@
 <style scoped>
   .app-header {
     transition: all 0.35s ease;
+    backdrop-filter: blur(8px);
   }
 
   /* Logo */
