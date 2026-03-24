@@ -4,8 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: smart-store-website
-    image: nongdev/smart-store-website:latest
+    container_name: clinic-website
+    image: nongdev/clinic-website:latest
     restart: always
     networks:
       - web

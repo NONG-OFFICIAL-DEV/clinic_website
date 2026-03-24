@@ -12,7 +12,7 @@ jobs:
   build-push:
     runs-on: ubuntu-latest
     env:
-      IMAGE_FRONTEND: ${{ secrets.DOCKERHUB_USERNAME }}/smart-store-website
+      IMAGE_FRONTEND: ${{ secrets.DOCKERHUB_USERNAME }}/clinic-website
       IMAGE_TAG: ${{ github.sha }}
     steps:
       - name: Checkout code
